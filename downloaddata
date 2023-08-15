@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+for j in {2016..2016}
+do
+for i in {5..12}
+do
+let start=${i}-1;
+
+curl "http://isc-mirror.iris.washington.edu/cgi-bin/web-db-run?request=COMPREHENSIVE&out_format=CATCSV&bot_lat=&top_lat=&left_lon=&right_lon=&ctr_lat=&ctr_lon=&radius=&max_dist_units=deg&searchshape=FE&srn=20&grn=&start_year=${j}&start_month=${start}&start_day=01&start_time=00%3A00%3A00&end_year=${j}&end_month=${i}&end_day=01&end_time=00%3A00%3A00&min_dep=&max_dep=&min_mag=&max_mag=&req_mag_type=&req_mag_agcy=prime" > ../data/20/${j}_${start}
+
+sleep 90;
+done
+
+let yearblabla=${j}+1;
+curl "http://isc-mirror.iris.washington.edu/cgi-bin/web-db-run?request=COMPREHENSIVE&out_format=CATCSV&bot_lat=&top_lat=&left_lon=&right_lon=&ctr_lat=&ctr_lon=&radius=&max_dist_units=deg&searchshape=FE&srn=20&grn=&start_year=${j}&start_month=12&start_day=01&start_time=00%3A00%3A00&end_year=${yearblabla}&end_month=1&end_day=01&end_time=00%3A00%3A00&min_dep=&max_dep=&min_mag=&max_mag=&req_mag_type=&req_mag_agcy=prime" > ../data/20/${j}_12
+sleep 90;
+
+done
